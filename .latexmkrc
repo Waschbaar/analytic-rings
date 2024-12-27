@@ -1,5 +1,7 @@
 @default_files = ('main.tex');
-$pdf_mode = 1;
+$pdf_mode = 5;
+$dvi_mode = 0;
+$postscript_mode = 0;
 $out_dir = 'build';
 $aux_dir = '/tmp/texbuild';
 set_tex_cmds('--shell-escape -interaction=nonstopmode %O %S');
