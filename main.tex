@@ -40,6 +40,8 @@
 \DeclareMathOperator{\Homs}{\underline{Hom}}
 \DeclareMathOperator{\rhoms}{\underline{RHom}}
 \DeclareMathOperator{\modcat}{Mod}
+\DeclareMathOperator{\ext}{Ext}
+\DeclareMathOperator{\exts}{\underline{Ext}}
 \newcommand{\opcat}{^{\mathrm{op}}}
 \newcommand{\lprof}{\mathsf{lProFin}}
 \newcommand{\huflag}{\triangleright}
@@ -58,6 +60,7 @@
 
 \begin{document}
 \maketitle
+\tableofcontents
 
 \section*{Conventions}
 
@@ -80,115 +83,240 @@ Derived ($ \infty $-)categories refer to the unbounded variant unless otherwise 
 There is no gluing happening in this talk so it is safe to interprete the symbol $ \D(R) $ as either the derived $ \infty $-category
 or the ordinary derived category.
 
-\section{Definition and formal constructions}
-This definition is from \cite[\href
-{https://www.youtube.com/watch?v=YxSZ1mTIpaA\&list=PLx5f8IelFRgGmu6gmL-Kf\_Rl\_6Mm7juZO\&t=3962s}{Video 1, 1:06:02}]{ihesvid}.
-We need the following abstract nonsense called the reflection principle:
-\begin{thm}
-If $ \mathcal{C} $ is a presentable $ \infty $-category and $ \mathcal{D} $ a full subcategory closed under all limits and $ \kappa $-filtered colimits
-for some regular cardinal $ \kappa $ ($ \kappa = \aleph _{0} $, for example),
-then $ \mathcal{D} $ is also presentable and the inclusion functor $ \mathcal{D}\to \mathcal{C} $ has a left adjoint.
-\end{thm}
+\pagebreak
 
-For proof see \cite{ragimov_infty-categorical_2022}. Also see \cite{adamek_reflections_1989} for an analogue for ordinary categories.
+\section{Definition}
 
 \begin{defi}
-A \emph{pre-analytic ring} $ A $ is a pair $ (A ^{\huflag}, \D(A)) $ where $ A ^{\huflag} $ is a condensed animated ring and
+A \emph{pre-analytic ring} is a pair $ (A ^{\huflag}, \modcat (A)) $ where $ A $ is a condensed ring and
+$ \modcat (A) $ a full additive subcategory of $ \modcat (A ^{\huflag}) $ satisfying the following conditions:
+
+\begin{enumerate}
+\item The inclusion functor $ \modcat (A)\to \modcat (A ^{\huflag}) $ has a left adjoint
+$ -\otimes _{A ^{\huflag}} A $ and a right adjoint $ \Homs _{A ^{\huflag}} (A, -) $;
+\item The subcategory $ \modcat (A) $ is closed under extensions;
+\item If $ M,N $ are $ A ^{\huflag} $-modules and $ N $ lies in $ \modcat (A) $,
+then $ \exts ^{i} _{A ^{\huflag}} (M, N) $ lies in $ \modcat (A) $ for all $ i\geq 0 $.
+\end{enumerate}
+A pre-analytic ring is called an \emph{analytic ring} if the object $ A ^{\huflag} $ lies in $ \modcat (A) $.
+
+A morphism of (pre-)analytic rings $ A\to B $ is a morphism $ f: A ^{\huflag}\to B ^{\huflag} $ such that
+when $ M $ lies in $ \modcat (B) $, the restriction of scalars of $ M $ lies in $ \modcat (A) $.
+\end{defi}
+
+There is also a derived version of the definition.
+This definition is a modified but equivalent version of \cite[\href
+{https://www.youtube.com/watch?v=YxSZ1mTIpaA\&list=PLx5f8IelFRgGmu6gmL-Kf\_Rl\_6Mm7juZO\&t=3962s}{Video 1, 1:06:02}]{ihesvid}.
+
+\begin{defi}
+A \emph{pre-analytic animated ring} $ A $ is a pair $ (A ^{\huflag}, \D(A)) $ where $ A ^{\huflag} $ is a condensed animated ring and
 $ \D (A) $ a full subcategory of $ \D (A ^{\huflag}) $ satisfying the following conditions:
 
 \begin{enumerate}
-\item The subcategory $ \D (A) $ is closed under all limits and colimits in $ \D (A ^{\huflag}) $ 
-(so the inclusion functor has a left adjoint which we denote by $ - \otimes _{A ^{\huflag}} A $);
-\item If $ M $ is some object of $ \D (A ^{\huflag}) $ and $ N $ is in $\D (A) $, then $ \rhoms _{R ^{\huflag}} (M, N) $ lies in $ \D (A) $;
+\item The inclusion functor $ \D (A)\to \D (A ^{\huflag}) $ has a left adjoint $ -\otimes _{A ^{\huflag}} A $
+and a right adjoint $ \Homs _{A ^{\huflag}}(A, -) $;
+\item If $ M,N $ are some objects of $ \D (A ^{\huflag}) $ such that $ N $ is in $\D (A) $, then $ \rhoms _{R ^{\huflag}} (M, N) $ lies in $ \D (A) $;
 \item The functor $ -\otimes _{A ^{\huflag}} A $, composed with the inclusion, takes $ \D ^{\leq 0}(A ^{\huflag}) $ to $ \D ^{\leq 0}(A ^{\huflag}) $;
 \end{enumerate}
-A pre-analytic ring $ (A ^{\huflag}, \D (A)) $ is called an \emph{analytic ring} if
+A pre-analytic animated ring $ (A ^{\huflag}, \D (A)) $ is called an \emph{analytic animated ring} if
 the object $ A ^{\huflag} $ lies in $ \D (A) $.
-A morphism of (pre-)analytic rings $ A\to B $ is a morphism $ f: A ^{\huflag}\to B ^{\huflag} $ of condensed animated rings such that when
+
+A morphism of (pre-)analytic animated rings $ A\to B $ is a morphism $ f: A ^{\huflag}\to B ^{\huflag} $ of condensed animated rings such that when
 $ M\in \D (B ^{\huflag}) $ lies in $ \D (B) $, the restriction of scalars $ M \in D (A ^{\huflag}) $ lies in $ \D (A) $.
 \end{defi}
 
-The subcategory $ \D (A) $ should be thought of as complete $ A ^{\huflag} $-modules.
-If there is no risk of confusion, we would say an object $ M $ of $ \D (A ^{\huflag}) $ is \emph{complete} if it lies in $\D (A) $.
-We will say that $ (A ^{\huflag}, \D (A)) $ is a structure of analytic ring on $ A ^{\huflag} $.
+The subcategory $ \modcat (A) $ (or $ \D (A) $) should be thought of as complete $ A ^{\huflag} $-modules.
+If there is no risk of confusion, we would say an object $ M $ of $ \modcat (A) $ (resp. $ \D (A ^{\huflag}) $) is
+\emph{complete} if it lies in $ \modcat (A) $ (resp. $\D (A) $).
+We will say that $ (A ^{\huflag}, \modcat (A)) $ (resp. $ (A ^{\huflag}, \D (A)) $) is a structure of a (pre-)analytic (resp. animated) ring on $ A ^{\huflag} $.
 
-The following formal properties are immediate from the definition.
-\begin{prop}
-Let $ A = (A ^{\huflag}, \D (A)) $ be an analytic ring.
-There is a unique symmetric monoidal structure on $ \D (A) $ making the functor $ -\otimes _{A ^{\huflag}} A $ symmetric monoidal.
-\end{prop}
+\begin{rmk}
+\label{definition::nonsense}
+Instead of requiring the inclusion functor to have both left and right adjoints,
+Clausen and Scholze require it to commute with all limits and colimits.
+The two are equivalent in view of the reflection principle,
+which is proved in \cite{adamek_reflections_1989} for ordinary categories and in \cite{ragimov_infty-categorical_2022} for $ \infty $-categories.
+Indeed, when the subcategory has arbitrary limits and colimits,
+the reflection principle implies that the inclusion functor $ \D (A)\to \D (A ^{\huflag}) $ (resp. $ \modcat (A)\to \modcat (A ^{\huflag}) $)
+has a left adjoint and that the subcategory
+$ \D (A) $ (resp. $ \modcat (A) $) is presentable.
+Then the adjoint functor theorem between presentable ($ \infty $-)categories implies the existence of the right adjoints.
 
-Informally the structure is defined to be $ M \otimes _{A} N := (M \otimes _{A ^{\huflag}} N)\otimes _{A ^{\huflag}} A $.
+The definitions of Clausen and Scholze are certainly more natural.
+However I decide to directly require the existence of the adjoints in order to avoid the reflection principle and the adjoint functor theorem.
+\end{rmk}
+
+The rest of this section is devoted to comparing the derived and non-derived definitions of analytic rings.
+The comparison works in much more generality than is proved here, see Remark \ref{definition::animated}.
+
+\begin{lem}
+Let $ (A ^{\huflag}, \D (A)) $ be a pre-analytic animated ring.
+The subcategory $ \D (A)\subset \D (A ^{\huflag}) $ satisfies 2-out-of-3 in distinguished triangles.
+\end{lem}
 
 \begin{proof}
+The subcategory $ \D (A) $ is closed under limits and colimits, so in particular fibers and cofibers.
 
+Suppose that $ M'\to M\to M'' $ is a distinguished triangle where $ M',M'' $ lies in $ \D (A) $.
+Then $ M\to M''\to M'[1] $ is also a fiber sequence, and $ M' [1] $ lies in $ \D (A) $ since left shifting is a colimit.
+This expresses $ M $ as a fiber of a map between objects in $ \D (A) $, so $ M $ lies in $ \D (A) $.
 \end{proof}
 
 \begin{prop}
-Let $ A = (A ^{\huflag}, \D (A)) $ be an analytic ring.
+Let $ A = (A ^{\huflag}, \D (A)) $ be a pre-analytic animated ring where $ A ^{\huflag} $ is static.
 \begin{enumerate}
+\item The subcategory $ \D (A) $ is closed under truncations in $ \D (A ^{\huflag}) $;
 \item The full subcategories $ \D ^{\leq 0}(A) := \D (A) \bigcap \D ^{\leq 0}(A ^{\huflag}) $ and $ D ^{\geq 0} := \D (A) \bigcap \D ^{\geq 0} (A ^{\huflag}) $
 give a $ t $-structure of $ \D (A) $;
-\item The heart $ \D (A)^{\heart} $ is a full additive subcategory of $ \modcat{\pi _{0}(A ^{\huflag})} $ closed under limits, colimits
-and extensions.
-\item An object $ M $ of $ \D (A ^{\huflag}) $ is complete if and only if for all $ i\in \mathbb{Z} $ the $ \pi _{0}(A ^{\huflag}) $-module
+\item The functor $ \Homs _{A ^{\huflag}}(A, -) $ preserves $ \D ^{\geq 0}(A ^{\huflag}) $;
+\item The heart $ \D (A)^{\heart} $ is a full additive subcategory of $ \modcat (A ^{\huflag}) $ closed under extensions,
+and the inclusion functor $ \D (A)^{\heart}\to \modcat (A ^{\huflag}) $ has both left and right adjoints;
+\item An object $ M $ of $ \D (A ^{\huflag}) $ is complete if and only if for all $ i\in \mathbb{Z} $ the $ A ^{\huflag} $-module
 $ H ^{i}(M) $ lies in $ \D (A)^{\heart} $.
 \end{enumerate}
+\label{definition::tstr}
 \end{prop}
 
 \begin{proof}
 (1)
-As the subcategory $ \D (A) $ is a full subcategory of $ \D (A ^{\huflag}) $ closed under all limits and colimits,
-the vanishing of $ \rhoms $ from a connective object to the right shift of a coconnective object
-and the closure of connective (resp. coconnective) objects under left (resp. right) shift
-are inherited from the standard $ t $-structure on $ \D (A ^{\huflag}) $.
-
-Suppose that $ M \in \D (A ^{\huflag}) $ is complete. We show first that $ \tau ^{\leq i} M $ and $ \tau ^{\geq i}M $ are both complete.
+Suppose that $ M \in \D (A ^{\huflag}) $ is complete. We need to show that $ \tau ^{\leq i} M $ and $ \tau ^{\geq i}M $ are both complete.
 As $ \D (A) $ is closed under all limits and colimits, we only have to show that $ \tau ^{\leq 0}M $ is complete for all complete $ M $.
-To avoid cubersome notations we temporarily denote the functor $ -\otimes _{A ^{\huflag}} A $ by $ L $.
+To avoid cumbersome notations we temporarily denote the functor $ -\otimes _{A ^{\huflag}} A $ by $ L $.
 Since $ M $ is complete, the natural morphism $ \tau ^{\leq 0}M\to M $ factors as $ \tau ^{\leq 0}M\to L \tau ^{\leq 0}M\to M $.
 Applying $ \tau ^{\leq 0} $ to this diagram and noting that $ L $ preserves $ \D ^{\leq 0} (A ^{\huflag}) $,
 we have a diagram $ \tau ^{\leq 0}M\to L \tau ^{\leq 0}\to \tau ^{\leq 0}M $ and the composition is the identity on $ \tau ^{\leq 0} M $.
 This shows that $ \tau ^{\leq 0}M $ is a retract of $ L \tau ^{\leq 0}M $ which is complete.
 As $ \D (A) $ is closed under colimits, $ \tau ^{\leq 0}M $ is also complete.
 
+(2)
+As the subcategory $ \D (A) $ is a full subcategory of $ \D (A ^{\huflag}) $ closed under all limits and colimits,
+the vanishing of $ \rhoms $ from a connective object to the right shift of a coconnective object
+and the closure of connective (resp. coconnective) objects under left (resp. right) shift
+are inherited from the standard $ t $-structure on $ \D (A ^{\huflag}) $.
+
 For every complete $ M\in \D (A ^{\huflag}) $ there is a fiber sequence
 $ \tau ^{\leq 0}M\to M\to \tau ^{\geq 1}M $ in $ \D (A ^{\huflag}) $.
 We have shown that $ \tau ^{\leq 0}M $ and $ \tau ^{\geq 1}M $ both belong to $ \D (A) $.
-Applying $ L $ which preserves colimits, we have a fiber sequence
+Applying $ -\otimes _{A ^{\huflag}} A $ which preserves colimits, we have a fiber sequence
 $ \tau ^{\leq 0}M\to M\to \tau ^{\geq 1}M $ in $ \D (A) $
 with $ \tau ^{\leq 0}M $ living in $ \D ^{\leq 0}(A) $ and $ \tau ^{\geq 1}M $ in $ \D ^{\geq 1}(A) $.
 So the pair $ (\D ^{\leq 0}(A), \D ^{\geq 1}(A)) $ does give a $ t $-structrure on $ \D (A) $.
 
-(2)
-By definition the heart $ \D (A)^{\heart} $ is a full subcategory of $ \D (A ^{\huflag})^{\heart} $, which is canonically equivalent to 
-$ \D (\pi _{0}(A ^{\huflag})) $.
+(3)
+We showed in (2) that $ (\D ^{\leq 0}(A), \D ^{\geq 1}(A)) $ is a $ t $-structure.
+So it suffices to check that $$ \Hom _{A ^{\huflag}}(M, \Homs _{A ^{\huflag}}(A, N)) = 0 $$
+for all $ N\in \D ^{\geq 0}(A ^{\huflag}) $ and $ M\in \D ^{\leq -1}(A) $.
+But this can be calculated by adjunction.
 
+(4)
+By definition the heart $ \D (A)^{\heart} $ is a full subcategory of $ \D (A ^{\huflag})^{\heart} $, which is canonically equivalent to 
+$ \modcat (A ^{\huflag}) $.
+The left and right adjoints of the inclusion $ \D (A)\to \D (A ^{\huflag}) $
+preserve $ \D ^{\leq 0}(A) $ and $ \D ^{\geq 0}(A) $ respectively.
+Thus their composition with $ H ^{0} $ give left and right adjoints of $ \D (A)^{\heart}\to \modcat (A ^{\huflag}) $.
+Exact sequences in $ \modcat (A ^{\huflag}) $ give rise to distinguished triangles in $ \D (A ^{\huflag}) $ and
+the subcategory $ \D (A) $ has 2-out-of-3 property in fiber sequences. Thus the extension of two objects in $ \D (A) ^{\heart} $
+still lies in $ \D (A) ^{\heart} $.
+
+(5)
+If $ M $ is complete then so is all $ H ^{i}(M) $ thanks to (1).
+Conversely, suppose that $ M $ is a object of $ \D (A ^{\huflag}) $ such that all $ H ^{i}(M) $ lies in $ \D (A)^{\heart} $.
+We first show by induction that
+if such an $ M $ is bounded ,i.e. $ M $ lies in some $ \D ^{\leq m}(A ^{\huflag}) \bigcap \D ^{\geq n}(A ^{\huflag}) $,
+then $ M $ is complete.
+There is nothing to show if $ m-n=0 $. Suppose that the statement is true for all $ m,n $ such that $ m-n\leq k $,
+and let $ M $ be an object of $ \D ^{\leq m}(A ^{\huflag}) \bigcap \D ^{\geq n}(A ^{\huflag}) $ such that $ m-n=k+1 $.
+There is a distinguished triangle $ \tau ^{\leq m-1} M \to M \to \tau ^{\geq m} M $.
+The object $ \tau ^{\geq m}M $ lies in $ \D (A ^{\huflag})^{\heart}[-m] $, so it is complete.
+The object $ \tau ^{\leq m-1} M $ is complete by induction hypothesis.
+So $ M $ is complete.
+If $ M $ is bounded on the left, then we may write $ M $ as a colimit of its truncations to cohomological degrees $ \leq n $.
+Each of the truncations is complete, and $ \D (A) $ is closed under colimits, so such an $ M $ is complete.
+In general, $ M $ is a limit of its truncations to cohomological degrees $ \geq n $.
+Each of the truncations is complete by the arguments above, and thus $ M $ is complete since $ \D (A) $ is closed under limits.
 \end{proof}
 
-When $ A $ is an analytic ring with $ A ^{\huflag} $ being static,
-we call $ \D(A)^{\heart} $ the category of $ A $-modules.
-Note that $ \D (A) $ is not neccessarily the derived $ \infty $-category of $ \D (A)^{\heart} $.
-(even if $ A $ is static?)
-
 \begin{prop}
-Let $ A = (A ^{\huflag}, \D (A)) $ be an analytic ring.
-If $ M $ is an object in $ \D (A ^{\huflag}) $, then $ M $ lies in $ \D (A) $ if and only if all $ H ^{i}(M) $ lies in $ \D (A)^{\heart} $.
+Let $ A ^{\huflag} $ be a condensed ring, which is also regarded as a static condensed animated ring.
+There is a bijective correspondence
+$$ \{\text{pre-analytic animated ring structures on } A ^{\huflag}\} \to \{\text{pre-analytic ring strcutures on } A ^{\huflag}\} $$
+taking a full subcategory $ \D (A)\subset \D (A ^{\huflag}) $ to the heart of the $ t $-structure in Proposition \ref{definition::tstr}.
+The inverse sends a subcategory $ \modcat (A)\subset \modcat (A ^{\huflag}) $ to the full subcategory of $ \D (A ^{\huflag}) $ spanned by
+objects $ M $ such that $ H ^{i}(M) $ lies in $ \modcat (A) $ for every $ i\in \mathbb{Z} $.
+
+Analytic animated ring structures correspond to analytic ring structures under the bijection.
 \end{prop}
 
 \begin{proof}
+If $ \D (A) $ defines a pre-analytic animated ring structure on $ A ^{\huflag} $, then Proposition \ref{definition::tstr}
+shows that $ \D (A)^{\heart} $ defined a pre-analytic ring structure on $ A $,
+and that $ \D (A) $ is recovered from $ \D (A)^{\heart} $ by the inverse map.
 
+Conversely, suppose that $ \modcat (A) $ defines a pre-analytic ring strcuture on $ A ^{\huflag} $.
+Let $ \D (A) $ be the subcategory of $ \D (A ^{\huflag}) $ determined by the inverse.
+By definition the abelian category $ \D (A) \bigcap \D (A ^{\huflag})^{\heart} $ is $ \modcat (A) $.
+It remains to check that $ \D (A) $ defines a pre-analytic animated ring structure on $ A ^{\huflag} $.
+
+Using the cohomological long exact sequence we see that $ \D (A) $ satisfies 2-out-of-3 in distinguished triangles.
+Arbitrary direct sums are exact in $ \modcat (A ^{\huflag}) $, and thus commuting with $ H ^{i} $ on $ \D (A ^{\huflag}) $.
+So $ \D (A) $ is closed under arbitrary direct sums.
+Now let $ \{M _{i}\}_{i\in \mathcal{I}} $ be a collection of objects in $ \D (A) $.
+Denote by $ M $ the direct sum of all $ M _{i} $.
+Then each $ M _{i} $ is a retract of $ M $, so $ H ^{i}(\prod _{i\in \mathcal{I}} M _{i}) $
+is a retract of $ H ^{i}(\prod _{i\in \mathcal{I}} M) $.
+But $ H ^{i}(\prod _{i\in \mathcal{I}} M) $ can also be calculated as $ \exts ^{i}(\bigoplus _{i\in \mathcal{I}} A ^{\huflag}, M) $,
+which lies in $ \modcat (A) $. So $ \prod _{i\in \mathcal{I}} M _{i} $ lies in $ \D (A) $.
+As homotopy limits and colimits can be calculated using direct sums, direct products and distinguished triangles,
+we conclude that $ \D (A) $ is closed under limits and colimits.
+Then we use the reflection principle in Remark \ref{definition::nonsense} to find the left and right adjoints of $ \D (A)\to \D (A ^{\huflag}) $.
+
+Now suppose that $ M,N $ are objects in $ \D (A ^{\huflag}) $ and that $ N $ lies in $ \D (A) $.
+We need to show that $ \rhoms _{A ^{\huflag}}(M, N) $ lies in $ \D (A) $.
+If $ M $ is bounded to the right and $ N $ is bounded to the left, then we may use a spectral sequence to calculate the cohomology of
+$ \rhoms _{A ^{\huflag}}(M, N) $ in terms of kenerls, cokernels and extensions of various $ \exts ^{i}(H ^{p}(M), H ^{q}(N)) $.
+Then $ \rhoms _{A ^{\huflag}(M, N)} $ lies in $ \D (A) $.
+The general case follows by writing $ M $ as a colimit of its right bounded truncations and $ N $ as a limit of its left bounded truncations.
+
+Now we need to check that if $ M\in \D (A ^{\huflag}) $ is connective, then $ LM $ is also connective, where $ L $ is the left adjoint
+of $ \D (A)\to \D (A ^{\huflag}) $.
+As $ \D (A) $ is clearly closed under truncations, $ \tau ^{\leq 0} L M $ lies in $ \D (A) $.
+There is a map $ M\to \tau ^{\leq 0}LM $ since $ M $ is connective.
+But then $ \tau ^{\leq 0}LM $ satisfies the unversal property of $ LM $,
+so $ \tau ^{\leq 0}LM\simeq LM $.
+This finishes the proof that $ \D (A) $ defines a pre-analytic ring structure.
+
+The requirement for being an analytic ring and an analytic animated ring are exactly that $ A ^{\huflag} $ lies in $ \modcat (A) $.
+\end{proof}
+
+\begin{rmk}
+Clausen stated a much stronger version of the comparison.
+If $ A ^{\huflag} $ is a condensed animated ring, then the same maps define a bijection between pre-analytic animated ring structures on
+$ A ^{\huflag} $ and pre-analytic ring structures on $ \pi _{0}(A ^{\huflag}) $.
+(In this case an analytic animated ring is mapped to an analytic ring, but not conversely since completeness needs to be tested on all $ \pi _{i} $.)
+Clausen pointed to \cite{analytic} for a proof, which I do not understand.
+\label{definition::animated}
+\end{rmk}
+
+\section{Formal constructions}
+
+\begin{prop}
+Let $ A = (A ^{\huflag}, \D (A)) $ (resp. $ (A ^{\huflag}, \modcat (A)) $) be a pre-analytic animated ring (resp. a pre-analytic ring).
+There is a unique symmetric monoidal structure on $ \D (A) $ (resp. $ \modcat (A) $) making the functor $ -\otimes _{A ^{\huflag}} A $ symmetric monoidal.
+\end{prop}
+
+The symmetric monoidal structure is defined to be $ M \otimes _{A} N := (M \otimes _{A ^{\huflag}} N)\otimes _{A ^{\huflag}} A $.
+
+\begin{proof}
+We first show that if $ M \in \D (A ^{\huflag}) $ satisfies $ M\otimes _{A ^{\huflag}} A \simeq 0 $,
+then for every $ N\in \D (A ^{\huflag}) $ we have $ (M\otimes _{A ^{\huflag}} N)\otimes _{A ^{\huflag}} A \simeq 0 $.
 \end{proof}
 
 \begin{exmp}
-For any condensed ring $ R $, the pair $ (R, \D (R)) $ is an analytic ring. We call this the trivial analytic ring structure on $ R $.
-\end{exmp}
-
-\begin{exmp}
-Let $ (A ^{\huflag}, \D (A)) $ be a pair satisfying all but condition (4) in the definition of an analytic ring.
-We call such a pair a \emph{pre-(analytic ring)}.
-There is a recipe for completing a pre-(analytic ring) into an analytic ring.
-Let $ A ^{\trianglerighteq} $ be the $ A ^{\huflag} $-module $ A ^{\huflag} \otimes _{A ^{\huflag}} A $.
+There is a recipe for completing a pre-analytic ring (resp. a pre-analytic (static ring)) into an analytic ring (resp. an analytic (static ring)).
+Suppose that $ (A ^{\huflag}, \D (A)) $ is a pre-analytic ring (resp. $ (A ^{\huflag}, \modcat (A)) $ a pre-analytic (static ring)).
+Let $ A ^{\huflag\huflag} $ be the $ A ^{\huflag} $-module $ A ^{\huflag} \otimes _{A ^{\huflag}} A $.
+Since the fucntor $ -\otimes _{A ^{\huflag}} A $ is symmetric monoidal, the object $ A ^{\huflag\huflag} $ has the structure of
+a strict commutative $ A ^{\huflag} $ algebra.
 \end{exmp}
 
 \begin{exmp}
@@ -201,6 +329,21 @@ This implies that $ \D (B) $ is closed under all limits and colimits.
 If $ M $ lies in $ \D (B) $ and $ N $ is some object of $ \D (B ^{\huflag}) $,
 then the restriction of scalar of $ \rhoms _{B ^{\huflag}}(N, M) $ to $ \D (A ^{\huflag}) $
 \end{exmp}
+
+\section{Easy examples}
+
+\begin{exmp}
+For any condensed ring $ A ^{\huflag} $, the pair $ (A ^{\huflag}, \modcat (A ^{\huflag})) $ is an analytic ring.
+Also, for any condensed animated ring $ A ^{\huflag} $, the pair $ (A ^{\huflag}, \D (A ^{\huflag})) $ is an analytic animated ring.
+\end{exmp}
+
+\begin{exmp}
+The pair $ (\mathbb{Z}, \mathrm{Solid}) $ is an analytic ring.
+We call $ (\mathbb{Z}, \mathrm{Solid}) $ the solid base ring.
+\end{exmp}
+
+\section{Gaseous base ring}
+
 \appendix
 \input{anima.tex}
 
