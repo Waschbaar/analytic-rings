@@ -42,12 +42,17 @@
 \DeclareMathOperator{\modcat}{Mod}
 \DeclareMathOperator{\ext}{Ext}
 \DeclareMathOperator{\exts}{\underline{Ext}}
+\newcommand{\dten}{\otimes ^{L}}
 \newcommand{\opcat}{^{\mathrm{op}}}
 \newcommand{\lprof}{\mathsf{lProFin}}
 \newcommand{\huflag}{\triangleright}
 \newcommand{\D}{\mathcal{D}}
 \newcommand{\comp}{^{\wedge}}
 \newcommand{\heart}{\heartsuit}
+\newcommand{\solid}{\square}
+
+\definecolor{respcolor}{RGB}{99,140,109}
+\newcommand{\resp}[1]{{\color{respcolor}(resp. #1)}}
 
 \newfontfamily\symbolafont{Symbola.ttf}
 \newcommand{\material}{\text{\symbolafont{🜔}}}
@@ -82,11 +87,14 @@ If I ever use an index of a chain complex that is not specified to be homologica
 Derived ($ \infty $-)categories refer to the unbounded variant unless otherwise mentioned.
 There is no gluing happening in this talk so it is safe to interprete the symbol $ \D(R) $ as either the derived $ \infty $-category
 or the ordinary derived category.
+The term \emph{isomorphism} used in derived categories means a quasi-isomorphism.
 
 \pagebreak
 
 \section{Definition}
 
+The following definition is given in
+\cite[\href{https://www.youtube.com/watch?v=dIwBTJNN7a0\&list=PLx5f8IelFRgGmu6gmL-Kf\_Rl\_6Mm7juZO\&index=8\&t=1633s}{Video 8, 27:13}]{ihesvid}.
 \begin{defi}
 A \emph{pre-analytic ring} is a pair $ (A ^{\huflag}, \modcat (A)) $ where $ A $ is a condensed ring and
 $ \modcat (A) $ a full additive subcategory of $ \modcat (A ^{\huflag}) $ satisfying the following conditions:
@@ -126,9 +134,9 @@ $ M\in \D (B ^{\huflag}) $ lies in $ \D (B) $, the restriction of scalars $ M \i
 \end{defi}
 
 The subcategory $ \modcat (A) $ (or $ \D (A) $) should be thought of as complete $ A ^{\huflag} $-modules.
-If there is no risk of confusion, we would say an object $ M $ of $ \modcat (A) $ (resp. $ \D (A ^{\huflag}) $) is
-\emph{complete} if it lies in $ \modcat (A) $ (resp. $\D (A) $).
-We will say that $ (A ^{\huflag}, \modcat (A)) $ (resp. $ (A ^{\huflag}, \D (A)) $) is a structure of a (pre-)analytic (resp. animated) ring on $ A ^{\huflag} $.
+If there is no risk of confusion, we would say an object $ M $ of $ \modcat (A) $ \resp{$ \D (A ^{\huflag}) $} is
+\emph{complete} if it lies in $ \modcat (A) $ \resp{$\D (A) $}.
+We will say that $ (A ^{\huflag}, \modcat (A)) $ \resp{$ (A ^{\huflag}, \D (A)) $} is a structure of a (pre-)analytic \resp{animated} ring on $ A ^{\huflag} $.
 
 \begin{rmk}
 \label{definition::nonsense}
@@ -137,13 +145,14 @@ Clausen and Scholze require it to commute with all limits and colimits.
 The two are equivalent in view of the reflection principle,
 which is proved in \cite{adamek_reflections_1989} for ordinary categories and in \cite{ragimov_infty-categorical_2022} for $ \infty $-categories.
 Indeed, when the subcategory has arbitrary limits and colimits,
-the reflection principle implies that the inclusion functor $ \D (A)\to \D (A ^{\huflag}) $ (resp. $ \modcat (A)\to \modcat (A ^{\huflag}) $)
+the reflection principle implies that the inclusion functor $ \D (A)\to \D (A ^{\huflag}) $ \resp{$ \modcat (A)\to \modcat (A ^{\huflag}) $}
 has a left adjoint and that the subcategory
-$ \D (A) $ (resp. $ \modcat (A) $) is presentable.
+$ \D (A) $ \resp{$ \modcat (A) $} is presentable.
 Then the adjoint functor theorem between presentable ($ \infty $-)categories implies the existence of the right adjoints.
 
 The definitions of Clausen and Scholze are certainly more natural.
-However I decide to directly require the existence of the adjoints in order to avoid the reflection principle and the adjoint functor theorem.
+However I decide to directly require the existence of the adjoints in order to avoid the reflection principle and the adjoint functor theorem
+(as much as possible).
 \end{rmk}
 
 The rest of this section is devoted to comparing the derived and non-derived definitions of analytic rings.
@@ -191,7 +200,7 @@ As $ \D (A) $ is closed under colimits, $ \tau ^{\leq 0}M $ is also complete.
 (2)
 As the subcategory $ \D (A) $ is a full subcategory of $ \D (A ^{\huflag}) $ closed under all limits and colimits,
 the vanishing of $ \rhoms $ from a connective object to the right shift of a coconnective object
-and the closure of connective (resp. coconnective) objects under left (resp. right) shift
+and the closure of connective \resp{coconnective} objects under left \resp{right} shift
 are inherited from the standard $ t $-structure on $ \D (A ^{\huflag}) $.
 
 For every complete $ M\in \D (A ^{\huflag}) $ there is a fiber sequence
@@ -245,6 +254,7 @@ The inverse sends a subcategory $ \modcat (A)\subset \modcat (A ^{\huflag}) $ to
 objects $ M $ such that $ H ^{i}(M) $ lies in $ \modcat (A) $ for every $ i\in \mathbb{Z} $.
 
 Analytic animated ring structures correspond to analytic ring structures under the bijection.
+\label{definition::comparison}
 \end{prop}
 
 \begin{proof}
@@ -285,14 +295,17 @@ But then $ \tau ^{\leq 0}LM $ satisfies the unversal property of $ LM $,
 so $ \tau ^{\leq 0}LM\simeq LM $.
 This finishes the proof that $ \D (A) $ defines a pre-analytic ring structure.
 
-The requirement for being an analytic ring and an analytic animated ring are exactly that $ A ^{\huflag} $ lies in $ \modcat (A) $.
+When a structure of a pre-analytic animated ring \resp{pre-analytic ring} on $ A ^{\huflag} $ is given,
+the remaining requirement for it to be an analytic animated ring \resp{analytic ring} is that $ A ^{\huflag} $ lies in
+$ \D (A) $ \resp{$ \modcat (A) $}. The conditions in derived and non-derived situations coincide since $ A ^{\huflag} $ is static.
 \end{proof}
 
 \begin{rmk}
-Clausen stated a much stronger version of the comparison.
 If $ A ^{\huflag} $ is a condensed animated ring, then the same maps define a bijection between pre-analytic animated ring structures on
 $ A ^{\huflag} $ and pre-analytic ring structures on $ \pi _{0}(A ^{\huflag}) $.
 (In this case an analytic animated ring is mapped to an analytic ring, but not conversely since completeness needs to be tested on all $ \pi _{i} $.)
+This is stated by Clausen in
+\cite[\href{https://www.youtube.com/watch?v=38PzTzCiMow\&list=PLx5f8IelFRgGmu6gmL-Kf\_Rl\_6Mm7juZO\&index=13\&t=2099s}{Video 13, 34:59}]{ihesvid}.
 Clausen pointed to \cite{analytic} for a proof, which I do not understand.
 \label{definition::animated}
 \end{rmk}
@@ -300,52 +313,270 @@ Clausen pointed to \cite{analytic} for a proof, which I do not understand.
 \section{Formal constructions}
 
 \begin{prop}
-Let $ A = (A ^{\huflag}, \D (A)) $ (resp. $ (A ^{\huflag}, \modcat (A)) $) be a pre-analytic animated ring (resp. a pre-analytic ring).
-There is a unique symmetric monoidal structure on $ \D (A) $ (resp. $ \modcat (A) $) making the functor $ -\otimes _{A ^{\huflag}} A $ symmetric monoidal.
+Let $ A = (A ^{\huflag}, \D (A)) $ \resp{$ (A ^{\huflag}, \modcat (A)) $} be a pre-analytic animated ring \resp{a pre-analytic ring}.
+There is a unique symmetric monoidal structure on $ \D (A) $ \resp{$ \modcat (A) $} making the functor $ -\otimes _{A ^{\huflag}} A $ symmetric monoidal.
 \end{prop}
 
-The symmetric monoidal structure is defined to be $ M \otimes _{A} N := (M \otimes _{A ^{\huflag}} N)\otimes _{A ^{\huflag}} A $.
+We denote the symmetric monoidal structure on $ \D (A) $ as $ -\dten _{A} - $.
+The requirement that $ -\otimes _{A ^{\huflag}} A $ is symmetric monoidal forces us to define
+$ M \dten _{A} N := (M \otimes _{A ^{\huflag}} N)\otimes _{A ^{\huflag}} A $.
+We write the proof only in the derived version to avoid using too many \resp{}.
+The proof can be adapted to the non-derived situation with minimal modification.
 
 \begin{proof}
-We first show that if $ M \in \D (A ^{\huflag}) $ satisfies $ M\otimes _{A ^{\huflag}} A \simeq 0 $,
-then for every $ N\in \D (A ^{\huflag}) $ we have $ (M\otimes _{A ^{\huflag}} N)\otimes _{A ^{\huflag}} A \simeq 0 $.
+We denote the functor $ -\otimes _{A ^{\huflag}} A $ by $ L $ in this proof.
+
+Suppose that $ f: M\to M' $ is a map in $ \D (A ^{\huflag}) $
+such that $ Lf $ is an isomorphism, and that $ N $ is some object of $ \D (A ^{\huflag}) $.
+For every object $ T $ of $ \D (A) $, we have that
+\begin{equation*}
+\rhom _{A ^{\huflag}}(M \dten _{A ^{\huflag}} N, T) \simeq \rhom _{A ^{\huflag}}(M, \rhoms _{A ^{\huflag}}(N, T))
+\end{equation*}
+and similarly for $ M' $.
+By assumption the object $ \rhoms _{A ^{\huflag}}(N, T) $ lies in $ \D (A) $.
+Thus the map
+\begin{equation*}
+\rhom _{A ^{\huflag}}(M' \dten _{A ^{\huflag}} N, T) \to \rhom _{A ^{\huflag}}(M \dten _{A ^{\huflag}} N, T)
+\end{equation*}
+induced by $ f $ is an isomorphism.
+Since this is true for all $ T\in \D (A) $, we conclude that $ f $ induces an isomorphism
+$ L(M\dten _{A ^{\huflag}} N)\to L(M' \dten _{A ^{\huflag}} N) $.
+Then \cite{ha}, Proposition 2.2.1.9 implies that $ \D (A) $ inherits a symmetric monoidal structure making functor $ L $ symmetric monoidal.
 \end{proof}
 
-\begin{exmp}
-There is a recipe for completing a pre-analytic ring (resp. a pre-analytic (static ring)) into an analytic ring (resp. an analytic (static ring)).
-Suppose that $ (A ^{\huflag}, \D (A)) $ is a pre-analytic ring (resp. $ (A ^{\huflag}, \modcat (A)) $ a pre-analytic (static ring)).
-Let $ A ^{\huflag\huflag} $ be the $ A ^{\huflag} $-module $ A ^{\huflag} \otimes _{A ^{\huflag}} A $.
-Since the fucntor $ -\otimes _{A ^{\huflag}} A $ is symmetric monoidal, the object $ A ^{\huflag\huflag} $ has the structure of
-a strict commutative $ A ^{\huflag} $ algebra.
-\end{exmp}
+\begin{prop}
+Let $ A\to B $ be a morphism of pre-analytic animated rings. Then the composition
+\begin{equation*}
+\D (A ^{\huflag}) \xrightarrow{- \dten _{A ^{\huflag}} B ^{\huflag}} \D (B ^{\huflag}) \xrightarrow{-\otimes _{B ^{\huflag}} B} \D (B)
+\end{equation*}
+factors through $ \D (A ^{\huflag}) \xrightarrow{-\otimes _{A ^{\huflag}} A}\D (A) $.
+The factorization gives a symmetric monoidal functor $ -\dten _{A} B: \D (A)\to \D (B) $
+which is the left adjoint of the restriction of scalar functor $ \D (B)\to \D (A) $.
+\end{prop}
 
-\begin{exmp}
-Let $ A ^{\huflag}\to B ^{\huflag} $ be a morphism of condensed rings and $ (A ^{\huflag}, \D (A)) $ a structure of analytic ring on $ A ^{\huflag} $.
-Define $ \D (B) $ to be the full subcategory of $ \D (B) $ spanned by objects $ M $ such that the restriction of scalar of $ M $ to $ \D (A ^{\huflag}) $
-lies in $ \D (A) $. We claim that $ (B ^{\huflag}, \D(B)) $ is a structure of analytic ring on $ B ^{\huflag} $.
+\begin{proof}
+Denote the functor $ -\otimes _{A ^{\huflag}} A $ by $ L _{A} $ and $ -\otimes _{B ^{\huflag}} B $ by $ L _{B} $ in this proof.
 
-Indeed, the restriction of scalar functor $ \D (B ^{\huflag})\to \D (A ^{\huflag}) $ has both left and right adjoints, so it commutes with all limits and colimits.
-This implies that $ \D (B) $ is closed under all limits and colimits.
-If $ M $ lies in $ \D (B) $ and $ N $ is some object of $ \D (B ^{\huflag}) $,
-then the restriction of scalar of $ \rhoms _{B ^{\huflag}}(N, M) $ to $ \D (A ^{\huflag}) $
-\end{exmp}
+Suppose that $ f: M\to N $ is a map in $ \D (A ^{\huflag}) $ such that $ L _{A} f $ is an isomorphism.
+If $ T\in \D (B) $, then
+\begin{equation*}
+\rhom _{B ^{\huflag}}(L _{B}(M\dten _{A ^{\huflag}} B ^{\huflag}), T)\simeq
+\rhom _{B ^{\huflag}}(M\dten _{A ^{\huflag}} B ^{\huflag}, T)\simeq 
+\rhom _{A ^{\huflag}}(M, T)
+\end{equation*}
+and similarly for $ N $. By assumption (the restriction of scalars from $ B ^{\huflag} $ to $ A ^{\huflag} $ of) $ T $ lies in $ \D (A) $.
+Thus the map
+\begin{equation*}
+\rhom _{B ^{\huflag}}(L _{B}(N\dten _{A ^{\huflag}} B ^{\huflag}), T)\to \rhom _{B ^{\huflag}}(L _{B}(M\dten _{A ^{\huflag}} B ^{\huflag}), T)
+\end{equation*}
+induced by $ f $ is an isomorphism.
+Then the composition $ L _{B} (-\dten _{A ^{\huflag}} B ^{\huflag}) $ factors through the localization functor $ L _{A}: \D (A ^{\huflag})\to \D (A) $.
+
+If $ M\in \D (A) $, then $ M\simeq L _{A} M $,
+so we may calculate $ M \dten _{A} B $ as $ L _{B}(M \dten _{A ^{\huflag}} B ^{\huflag}) $.
+Thus, if $ M,N\in \D (A) $, we may calculate that
+\begin{align*}
+(M\dten _{A} B)\otimes _{B} (M\dten _{A} B)
+&\simeq L _{B} ( (M \dten _{A ^{\huflag}} B ^{\huflag}) \dten _{B ^{\huflag}} (N \dten _{A ^{\huflag}} B ^{\huflag}))\\
+&\simeq L _{B} ( (M \dten _{A ^{\huflag}} N) \dten _{A ^{\huflag}} B ^{\huflag} )\\
+&\simeq L _{B} ( L _{A}(M \dten _{A ^{\huflag} N}) \dten _{A ^{\huflag}} B ^{\huflag})\\
+&\simeq (M\dten _{A} N) \dten _{A} B.
+\end{align*}
+The isomorphisms are natural, so $ -\dten _{A} B $ is symmetric monoidal.
+
+Finally suppose that $ M\in \D (A) $ and $ N \in \D (B) $. We calculate that
+\begin{align*}
+\rhom _{B ^{\huflag}}(M \dten _{A} B, N)
+&\simeq \rhom _{B ^{\huflag}}(M \dten _{A ^{\huflag}} B ^{\huflag}, N)\\
+&\simeq \rhom _{A ^{\huflag}}(M, N).
+\end{align*}
+The isomorphisms are natural so $ -\dten _{A} B $ is the left adjoint of the restriction of scalars $ \D (B)\to \D (A) $.
+\end{proof}
+
+Beware that $ -\dten _{A} B $ does not neccessarily preserve the heart even if $ A,B $ are static.
+
+Most examples of (pre-)analytic rings arises from a certain base ring through the following construction.
+Note that it is easier to do the construction on the derived level.
+\begin{prop}
+Let $ (A ^{\huflag}, \D (A)) $ be a pre-analytic animated ring and $ A ^{\huflag}\to B ^{\huflag} $ be a map of condensed animated rings.
+Let $ \D (B) $ be the full subcategory of $ \D (B ^{\huflag}) $ spanned by the objects whose restriction of scalars to $ \D (A ^{\huflag}) $
+lies in $ \D (A) $. Then the pair $ (B ^{\huflag}, \D (B)) $ is a pre-analytic animated ring.
+\end{prop}
+
+\begin{proof}
+Since the restriction of scalar functor commutes with limits and colimits, the full subcategory
+$ \D (B) $ is closed under limits and colimits.
+Then Remark \ref{definition::nonsense} gives the required left and right adjoints.
+
+Now suppose that $ M, N\in \D (B ^{\huflag}) $ and $ N $ lies in $ \D (B) $.
+We would like to show that $ \rhoms _{B ^{\huflag}}(M, N) $ lies in $ \D (B) $.
+If $ M \simeq M_0 \dten _{A ^{\huflag}} B ^{\huflag} $,
+then
+\begin{equation*}
+\rhoms _{B ^{\huflag}}(M, N)\simeq \rhoms _{A ^{\huflag}}(M_0, N)
+\end{equation*}
+as $ A ^{\huflag} $-modules.
+In this case the object $ \rhoms _{B ^{\huflag}}(M, N) $ lies in $ \D (B) $.
+For general $ M $, let $ M ^{\bullet}\to M $ be the Bar complex. Each $ M ^{i} $ is of the form $ M ^{i}_{0}\dten _{A ^{\huflag}}B ^{\huflag} $
+so $ \rhoms _{B ^{\huflag}}(M ^{i}, N) $ lies in $ \D (B) $.
+The object $ \rhoms _{B ^{\huflag}}(M, N) $ is then the limit of $ \rhoms _{B ^{\huflag}}(M ^{\bullet}, N) $,
+which lies in $ \D (B) $ since the latter is closed under limits.
+
+Finally we need to check that the composition of the completion and the inclusion
+$ \D (B ^{\huflag})\to \D (B)\to \D (B ^{\huflag}) $ preserves the connective part.
+We only need to show that $ \tau ^{\leq 0} $ preserves $ \D (B) $, by the same argument as in the proof of Proposition
+\ref{definition::comparison}.
+But the restriction of scalar functor commutes with truncations, so indeed $ \D (B) $ is closed under truncations.
+\end{proof}
+
+\begin{rmk}
+If both $ A ^{\huflag} $ and $ B ^{\huflag} $ are static, then we can use Proposition \ref{definition::comparison} to transport the
+pre-analytic animated ring strcuture on $ B ^{\huflag} $ to a pre-analytic ring structure on $ B ^{\huflag} $,
+even if the functor $ -\dten _{A ^{\huflag}}B ^{\huflag} $ does not preserve the heart.
+\end{rmk}
+
+The final piece of abstract nonsense is a recipe to complete a pre-analytic (animated) ring into an analytic (animated) ring.
+The idea is to take the completion of $ A ^{\huflag} $, which is an object of $ \D (A) $.
+However it is difficult to get the strcuture of an animated ring on the completion:
+the (symmetric monoidal)-ness of the completion only buys us that of an $ \mathbb{E}_{\infty} $-ring!
+There is a full proof, which spans quite a few pages in \cite{rodriguez-camargo_notes_nodate},
+that deals with the animated ring structure properly.
+Here we restrict to the case where the completion of $ A ^{\huflag} $ is static,
+which suffices in a lot of the applications.
+\begin{prop}
+Suppose that $ (A ^{\huflag}, \D (A)) $ is an analytic animated ring.
+Let $ A ^{\huflag\huflag} $ be the object $ A ^{\huflag} \otimes _{A ^{\huflag}} A $.
+Assume that the object $ A ^{\huflag\huflag} $ is static, i.e. lies in $ \D (A ^{\huflag})^{\heart} $.
+Then:
+\begin{enumerate}
+\item The object $ A ^{\huflag\huflag} $ is an animated $ A ^{\huflag} $-algebra;
+\item There is a fully faithful functor $ \D (A)\to \D (A ^{\huflag\huflag}) $;
+\item The pair $ (A ^{\huflag\huflag}, \D (A)) $ is an analytic animated ring.
+\end{enumerate}
+\end{prop}
+
+\begin{proof}
+(1)
+
+\end{proof}
+
+\begin{rmk}
+Completion of a pre-analytic animated ring into an analytic animated ring,
+if established in full generality as in \cite{rodriguez-camargo_notes_nodate},
+gives a left adjoint to the inclusion functor
+\begin{equation*}
+\{analytic animated rings\}\to \{pre-analytic animated ring\}.
+\end{equation*}
+\end{rmk}
 
 \section{Easy examples}
 
 \begin{exmp}
 For any condensed ring $ A ^{\huflag} $, the pair $ (A ^{\huflag}, \modcat (A ^{\huflag})) $ is an analytic ring.
 Also, for any condensed animated ring $ A ^{\huflag} $, the pair $ (A ^{\huflag}, \D (A ^{\huflag})) $ is an analytic animated ring.
+We call this analytic (animated) ring structure the \emph{trivial} analytic (animated) ring strcuture.
 \end{exmp}
 
 \begin{exmp}
-The pair $ (\mathbb{Z}, \mathrm{Solid}) $ is an analytic ring.
-We call $ (\mathbb{Z}, \mathrm{Solid}) $ the solid base ring.
+The pair $ \mathbb{Z}_{\solid} = (\mathbb{Z}, \mathrm{Solid}) $ is an analytic ring.
+We call $ \mathbb{Z}_{\solid} $ the solid base ring.
+\end{exmp}
+
+\begin{exmp}
+Let $ A $ be any condensed animated ring. Then the map $ \mathbb{Z}\to A $ and the analytic ring structure
+$ \mathbb{Z}_{\solid} $ induces a pre-analytic animated ring structure on $ A $.
+We denote the completion of this analytic structure by $ A _{\solid} $.
+
+If $ A $ is solid as a condensed abelain group, then completion is not neccessary.
+In this case $ A _{\solid} = (A, \D (A _{\solid})) $ where $ \D (A _{\solid}) $ is the full subcategory
+of $ \D (A) $ consisting of objects that are solid as condensed abelian groups.
+
+Since the solidification of $ \mathbb{R} $ is $ 0 $, the analytic ring $ \mathbb{R}_{\solid} $ is the $ 0 $ ring.
+\end{exmp}
+
+\begin{exmp}
+Let $ A\to B $ be a map of pre-analytic animated rings.
+Then the map factor as $ A \to B _{0}\to B $, where $ B _{0}$ is the induced pre-analytic
+structure on $ B ^{\huflag} $.
+
+If $ B $ is an analytic animated ring, then so is $ B _{0} $.
 \end{exmp}
 
 \section{Gaseous base ring}
 
-\appendix
-\input{anima.tex}
+The gaseous theory is designed to be the universal context for constructing the Tate elliptic curve.
+It is global in the sense that it specializes to theories on both non-archimedean and archimedean rings.
+
+Kedlaya chose to use the terminology \emph{coalescent} instead of \emph{gaseous}.
+(Make sure you use the latest version of his notes, or you will probably see \emph{liquid} which was a bad choice.)
+I stick with gas, even if gas is not a condensed state of matter.
+
+Suppose that $ A ^{\huflag} $ is a condensed ring.
+Let $ P _{A} $ be the $ A ^{\huflag} $-module $ P \otimes _{\mathbb{Z}} A ^{\huflag} $,
+where $ P = \mathbb{Z}[\mathbb{N}\cup \{\infty\}] / \mathbb{Z}[\infty] $.
+Using the adjunction and the fact that $ P $ is internally projective,
+we see that $ P _{A} $ is internally projective in $ \modcat (A ^{\huflag}) $.
+
+\begin{defi}
+Fix an element $ f\in A ^{\huflag} (*) $. An $ A ^{\huflag} $-module $ M $ is said to be \emph{$ f $-gaseous} if
+\begin{equation*}
+(\mathrm{id} - f \sigma)^{*}: \Homs _{A ^{\huflag}}(P _{A}, M) \to \Homs _{A ^{\huflag}}(P _{A}, M)
+\end{equation*}
+is an isomorphism.
+A complex $ M\in \D (A ^{\huflag}) $ is said to be $ f $-gaseous if
+\begin{equation}
+(\mathrm{id}-f \sigma)^{*}: \rhoms _{A ^{\huflag}}(P _{A}, M)\to \rhoms _{A ^{\huflag}}(P _{A}, M)
+\end{equation}
+is an isomorphism.
+\label{gaseous::def}
+\end{defi}
+
+The idea of $ f $-gaseous is (which is precise when $ M $ is quasi-separated) that
+if $ \{a _{i}\} $ is a null sequence in $ M $, then
+$ \{f ^{i} a _{i}\} $ is summable.
+
+\begin{prop}
+Using the notations from Definition \ref{gaseous::def}.
+Let $ \mathsf{Gas}(f) $ be the category of $ f $-gaseous complexes in $ \D (A ^{\huflag}) $.
+Then $ (A ^{\huflag}, \mathsf{Gas}(f)) $ is a pre-analytic animated ring.
+\end{prop}
+
+The proof is essentially a word-to-word copy of the solid case.
+
+\begin{proof}
+The object $ P _{A} $ is internally compact projective, thus $ \rhoms _{A ^{\huflag}}(P _{A}, -) $ commutes with all limits and colimits.
+It is immediate that $ \mathsf{Gas}(f) $ is closed under limits and colimits.
+Then Remark \ref{definition::nonsense} gives the left and right adjoints.
+Since $ \hom _{A ^{\huflag}}(P _{A}, -) $ commutes with all $ H ^{i} $, a complex $ M $ is $ f $-gaseous if each $ H ^{i}(M) $ is $ f $-gaseous.
+
+If $ M,N $ are $ A ^{\huflag} $-modules, then
+\begin{align*}
+\rhoms _{A ^{\huflag}}(P _{A}, \rhoms _{A ^{\huflag}}(M, N))
+&\simeq \rhoms _{A ^{\huflag}}(P _{A}\dten _{A ^{\huflag}} M, N)\\
+&\simeq \rhoms _{A ^{\huflag}}(M, \rhoms _{A ^{\huflag}}(P _{A}, N)).
+\end{align*}
+Using this isomorphism it is easy to see that if $ N $ is $ f $-gaseous,
+then $ \rhoms _{A ^{\huflag}}(M, N) $ is also $ f $-gaseous.
+
+Since being $ f $-gaseous can be checked on cohomology, $ \mathsf{Gas}(f) $ is closed under truncations.
+Then the argument in the proof of Proposition \ref{definition::comparison} shows that
+the left adjoint to $ \mathsf{Gas}(f)\to \D (A ^{\huflag}) $ preserves the connective parts.
+\end{proof}
+
+Now we discuss the case where $ f $ is a topological nilpotent unit.
+The addition on $ \mathbb{N} $ induces a ring strcuture on $ P $,
+which we denote by $ \mathbb{Z}[\hat{q}] $.
+There is a map from the discrete condensed ring $ \mathbb{Z}[q] $ to $ \mathbb{Z}[\hat{q}] $
+that sends $ q $ to $ [1] $.
+More formally, it is induced by the map $ \mathbb{N}\to \mathbb{N}\cup \{\infty\} $ of condensed sets.
+Let $ A _{0}^{\huflag} $ be the condensed ring $ \mathbb{Z}[\hat{q}][q ^{-1}]$,
+which is more formally constructed as
+\begin{equation*}
+A _{0}^{\huflag} := \colim (\mathbb{Z}[\hat{q}] \xrightarrow{\times q} \mathbb{Z}[\hat{q}]\xrightarrow{\times q} \mathbb{Z}[\hat{q}]\xrightarrow{\times q} \cdots   ).
+\end{equation*}
+
+%\appendix
+%\input{anima.tex}
 
 \printbibliography
 \end{document}

@@ -76,5 +76,8 @@ seconds = convert_time(args.time)
 url_suffix = f"&t={seconds}s"
 url = video_urls[args.video_number - 1] + url_suffix
 escaped = latex_escapes(url)
-print(escaped)
+caption = f"Video {args.video_number}, {args.time}"
+cite_string = "\\cite[\\href{" + escaped + "}{" + caption + "}]{ihesvid}" 
+
+print(cite_string)
 
