@@ -155,7 +155,7 @@ However I decide to directly require the existence of the adjoints in order to a
 (as much as possible).
 \end{rmk}
 
-The rest of this section is devoted to comparing the derived and non-derived definitions of analytic rings.
+\subsection{Comparison derived vs. non-derived}
 The comparison works in much more generality than is proved here, see Remark \ref{definition::animated}.
 
 \begin{lem}
@@ -312,6 +312,7 @@ Clausen pointed to \cite{analytic} for a proof, which I do not understand.
 
 \section{Formal constructions}
 
+\subsection{Symmetric monoidal structure}
 \begin{prop}
 Let $ A = (A ^{\huflag}, \D (A)) $ \resp{$ (A ^{\huflag}, \modcat (A)) $} be a pre-analytic animated ring \resp{a pre-analytic ring}.
 There is a unique symmetric monoidal structure on $ \D (A) $ \resp{$ \modcat (A) $} making the functor $ -\otimes _{A ^{\huflag}} A $ symmetric monoidal.
@@ -395,7 +396,9 @@ The isomorphisms are natural so $ -\dten _{A} B $ is the left adjoint of the res
 
 Beware that $ -\dten _{A} B $ does not neccessarily preserve the heart even if $ A,B $ are static.
 
-Most examples of (pre-)analytic rings arises from a certain base ring through the following construction.
+\subsection{Induced pre-analytic structure}
+
+A lot of examples of (pre-)analytic rings arises from a certain base ring through the following construction.
 Note that it is easier to do the construction on the derived level.
 \begin{prop}
 Let $ (A ^{\huflag}, \D (A)) $ be a pre-analytic animated ring and $ A ^{\huflag}\to B ^{\huflag} $ be a map of condensed animated rings.
@@ -435,6 +438,8 @@ pre-analytic animated ring strcuture on $ B ^{\huflag} $ to a pre-analytic ring 
 even if the functor $ -\dten _{A ^{\huflag}}B ^{\huflag} $ does not preserve the heart.
 \end{rmk}
 
+\subsection{Completing a pre-analytic ring}
+
 The final piece of abstract nonsense is a recipe to complete a pre-analytic (animated) ring into an analytic (animated) ring.
 The idea is to take the completion of $ A ^{\huflag} $, which is an object of $ \D (A) $.
 However the completion can fail to be static, which makes it hard to control the $ \exts ^{i} $ if we do completion at the abelian level.
@@ -466,7 +471,7 @@ Completion of a pre-analytic animated ring into an analytic animated ring,
 if established in full generality as in \cite{rodriguez-camargo_notes_nodate},
 gives a left adjoint to the inclusion functor
 \begin{equation*}
-\{analytic animated rings\}\to \{pre-analytic animated ring\}.
+\{\text{analytic animated rings}\}\to \{\text{pre-analytic animated ring}\}.
 \end{equation*}
 \end{rmk}
 
@@ -534,7 +539,7 @@ is an isomorphism.
 \label{gaseous::def}
 \end{defi}
 
-The idea of $ f $-gaseous is (which is precise when $ M $ is quasi-separated) that
+The idea of $ f $-gaseous is that
 if $ \{a _{i}\} $ is a null sequence in $ M $, then
 $ \{f ^{i} a _{i}\} $ is summable.
 
@@ -591,11 +596,13 @@ The choice of $ \frac{1}{2} $ is not important here. Any $ \alpha\in ]0, 1[ $ gi
 \begin{prop}
 Let $ V $ be an $ \mathbb{R} $-vector space equipped with an invariant metric $ d $.
 Denote by $ \underline{V} $ the embedding of $ V $ into condensed $ \mathbb{R} $-vector spaces, using the topology determined by $ d $.
-Then $ V $ is complete (i.e. an F-space) if and only $ V $ is gaseous.
+Then $ V $ is complete (i.e. an F-space) if and only if $ \underline{V} $ is gaseous.
 \end{prop}
 
 \begin{proof}
-
+Suppose that $ V $ is complete.
+Let $ f: P _{\mathbb{R}} \to V $ be a map.
+For any profinite set $ S $, $ f (S) : P _{\mathbb{R}} (S) \to V (S) $ is 
 \end{proof}
 
 So the gaseous real number captures the completeness of topological vector spaces.
