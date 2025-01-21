@@ -456,14 +456,49 @@ Assume that the object $ A ^{\huflag\huflag} $ is static, i.e. lies in $ \D (A ^
 Then:
 \begin{enumerate}
 \item The object $ A ^{\huflag\huflag} $ is an animated $ A ^{\huflag} $-algebra;
-\item There is a fully faithful functor $ \D (A)\to \D (A ^{\huflag\huflag}) $;
+\item If $ M $ is an object of $ \D (A) $, then there is a unique $ A ^{\huflag\huflag} $-module structure on $ M $
+whose restriction of scalar to $ A ^{\huflag} $ is $ M $;
+\item If $ M,N $ are objects in $ \D (A) $, then the comparison
+\begin{equation*}
+\rhoms _{A ^{\huflag}}(M, N) \to \rhoms _{A ^{\huflag\huflag}}(M, N)
+\end{equation*}
+induced by functoriality is an isomorphism;
 \item The pair $ (A ^{\huflag\huflag}, \D (A)) $ is an analytic animated ring.
 \end{enumerate}
 \end{prop}
 
 \begin{proof}
-(1)
+Denote temporarily by $ L _{A} $ the functor $ -\otimes _{A ^{\huflag}} A $.
 
+(1)
+Applying $ L _{A} $ to the isomorphism $ A ^{\huflag}\dten _{A ^{\huflag}} A ^{\huflag} \to A ^{\huflag} $
+and using that $ L _{A} $ is symmetric monoidal gives a map 
+$$ A ^{\huflag\huflag}\dten _{A ^{\huflag}} A ^{\huflag\huflag}\to L _{A} (A ^{\huflag\huflag} \dten _{A ^{\huflag}} A ^{\huflag\huflag})
+\to A ^{\huflag\huflag}, $$
+which makes $ A ^{\huflag\huflag} $ into a condensed $ \mathbb{E}_{\infty} $-ring.
+But $ A ^{\huflag\huflag} $ is static, so it also has a structure of an animated ring.
+
+(2)
+Let $ M $ be an object of $ \D (A) $. Then applying $ L _{A} $ to the isomorphism $ M\dten _{A ^{\huflag}} A ^{\huflag}\to M $ gives a map
+$ M \dten _{A ^{\huflag}} A ^{\huflag\huflag}\to M $.
+This maps makes $ M $ into an $ \mathbb{E}_{\infty} $-$ A ^{\huflag\huflag} $-module.
+
+A map $ M\dten _{A ^{\huflag}} A ^{\huflag\huflag} \to M $ factors uniquely as the counit and its completion
+$$M \dten _{A ^{\huflag}}A ^{\huflag\huflag}\to L _{A}(M \dten _{A ^{\huflag}} A ^{\huflag\huflag}) \to M .$$
+This shows uniqueness.
+
+(3)
+The $ \rhoms $ between restriction of scalars of $ M, N $ gives the inverse.
+
+(4)
+If $ M $ is an object of $ \D (A) $ considered as an $ A ^{\huflag\huflag} $-modules as in (2),
+then the restriction of scalar of $ M $ to $ \D (A ^{\huflag}) $ is just $ M $.
+While if $ M $ is an object of $ \D (A ^{\huflag\huflag}) $ whose restriction of scalar to $ \D (A ^{\huflag}) $, $ M _{0} $,
+is in $ \D (A) $, then $ M $ is obtained by $ M _{0} $ from the construction of (2) by uniqueness.
+Thus the image of $ \D (A) $ in $ \D (A ^{\huflag\huflag}) $ defines the induced pre-analytic structure on $ A ^{\huflag\huflag} $.
+By constrution $ A ^{\huflag\huflag} $ lies in the image of $ \D (A) $,
+so $ (A ^{\huflag\huflag}, \D (A)) $ is an analytic animated ring.
+((3) allows the abuse of notation that the image of $ \D (A) $ is denoted by $ \D (A) $.)
 \end{proof}
 
 \begin{rmk}
@@ -574,11 +609,12 @@ the left adjoint to $ \mathsf{Gas}(f)\to \D (A ^{\huflag}) $ preserves the conne
 \subsection{Gaseous base ring}
 
 Now we discuss the case where $ f $ is a topological nilpotent unit.
-The addition on $ \mathbb{N} $ induces a ring strcuture on $ P $,
+The addition on $ \mathbb{N} $ induces a monoid structure on $ \mathbb{N}\cup \{\infty\} $
+and in turn a ring strcuture on $ P $,
 which we denote by $ \mathbb{Z}[\hat{q}] $.
 There is a map from the discrete condensed ring $ \mathbb{Z}[q] $ to $ \mathbb{Z}[\hat{q}] $
 that sends $ q $ to $ [1] $.
-More formally, it is induced by the map $ \mathbb{N}\to \mathbb{N}\cup \{\infty\} $ of condensed sets.
+More formally, it is induced by the map $ \mathbb{N}\to \mathbb{N}\cup \{\infty\} $ of condensed monoids.
 Let $ A _{0}^{\huflag} $ be the condensed ring $ \mathbb{Z}[\hat{q}][q ^{-1}]$,
 which is more formally constructed as
 \begin{equation*}
