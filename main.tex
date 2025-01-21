@@ -437,7 +437,8 @@ even if the functor $ -\dten _{A ^{\huflag}}B ^{\huflag} $ does not preserve the
 
 The final piece of abstract nonsense is a recipe to complete a pre-analytic (animated) ring into an analytic (animated) ring.
 The idea is to take the completion of $ A ^{\huflag} $, which is an object of $ \D (A) $.
-However it is difficult to get the strcuture of an animated ring on the completion:
+However the completion can fail to be static, which makes it hard to control the $ \exts ^{i} $ if we do completion at the abelian level.
+If we do it on the derived level, then it is difficult to get the strcuture of an animated ring on the completion:
 the (symmetric monoidal)-ness of the completion only buys us that of an $ \mathbb{E}_{\infty} $-ring!
 There is a full proof, which spans quite a few pages in \cite{rodriguez-camargo_notes_nodate},
 that deals with the animated ring structure properly.
@@ -502,7 +503,9 @@ structure on $ B ^{\huflag} $.
 If $ B $ is an analytic animated ring, then so is $ B _{0} $.
 \end{exmp}
 
-\section{Gaseous base ring}
+\section{Gaseous theory}
+
+\subsection{Gaseous modules}
 
 The gaseous theory is designed to be the universal context for constructing the Tate elliptic curve.
 It is global in the sense that it specializes to theories on both non-archimedean and archimedean rings.
@@ -563,6 +566,8 @@ Then the argument in the proof of Proposition \ref{definition::comparison} shows
 the left adjoint to $ \mathsf{Gas}(f)\to \D (A ^{\huflag}) $ preserves the connective parts.
 \end{proof}
 
+\subsection{Gaseous base ring}
+
 Now we discuss the case where $ f $ is a topological nilpotent unit.
 The addition on $ \mathbb{N} $ induces a ring strcuture on $ P $,
 which we denote by $ \mathbb{Z}[\hat{q}] $.
@@ -574,6 +579,27 @@ which is more formally constructed as
 \begin{equation*}
 A _{0}^{\huflag} := \colim (\mathbb{Z}[\hat{q}] \xrightarrow{\times q} \mathbb{Z}[\hat{q}]\xrightarrow{\times q} \mathbb{Z}[\hat{q}]\xrightarrow{\times q} \cdots   ).
 \end{equation*}
+
+\subsection{Gaseous real number}
+
+\begin{defi}
+The gaseous real number is the analytic ring $ (\mathbb{R}, \mathsf{Gas}(\frac{1}{2})) $.
+\end{defi}
+
+The choice of $ \frac{1}{2} $ is not important here. Any $ \alpha\in ]0, 1[ $ gives the same theory.
+
+\begin{prop}
+Let $ V $ be an $ \mathbb{R} $-vector space equipped with an invariant metric $ d $.
+Denote by $ \underline{V} $ the embedding of $ V $ into condensed $ \mathbb{R} $-vector spaces, using the topology determined by $ d $.
+Then $ V $ is complete (i.e. an F-space) if and only $ V $ is gaseous.
+\end{prop}
+
+\begin{proof}
+
+\end{proof}
+
+So the gaseous real number captures the completeness of topological vector spaces.
+Note that it says nothing about $ p $-convexity.
 
 %\appendix
 %\input{anima.tex}
