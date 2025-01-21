@@ -606,9 +606,20 @@ Then the argument in the proof of Proposition \ref{definition::comparison} shows
 the left adjoint to $ \mathsf{Gas}(f)\to \D (A ^{\huflag}) $ preserves the connective parts.
 \end{proof}
 
+\begin{lem}
+Let $ A ^{\huflag} $ be a condensed ring and $ f $ an element of $ A (*) $.
+Fix an integer $ n \geq 1 $.
+A complex $ M\in \D (A ^{\huflag}) $ is $ f $-gaseous if and only if $ M $ is $ f ^{n} $-gaseous.
+\end{lem}
+
+\begin{proof}
+
+\end{proof}
+
 \subsection{Gaseous base ring}
 
-Now we discuss the case where $ f $ is a topological nilpotent unit.
+Now we discuss the case where $ f $ is a topologically nilpotent unit.
+
 The addition on $ \mathbb{N} $ induces a monoid structure on $ \mathbb{N}\cup \{\infty\} $
 and in turn a ring strcuture on $ P $,
 which we denote by $ \mathbb{Z}[\hat{q}] $.
@@ -621,29 +632,59 @@ which is more formally constructed as
 A _{0}^{\huflag} := \colim (\mathbb{Z}[\hat{q}] \xrightarrow{\times q} \mathbb{Z}[\hat{q}]\xrightarrow{\times q} \mathbb{Z}[\hat{q}]\xrightarrow{\times q} \cdots   ).
 \end{equation*}
 
+\begin{defi}
+Let $ A $ be a condensed ring. An element $ f \in  A (*) $ is called \emph{topologically nilpotent}
+if the map $ \mathbb{Z}[T]\to A $ sending $ n $ to $ f ^{n} $ factors through $ \mathbb{Z}[T]\to \mathbb{Z}[\hat{q}]$.
+\end{defi}
+
 \subsection{Gaseous real number}
 
 \begin{defi}
 The gaseous real number is the analytic ring $ (\mathbb{R}, \mathsf{Gas}(\frac{1}{2})) $.
 \end{defi}
 
-The choice of $ \frac{1}{2} $ is not important here. Any $ \alpha\in ]0, 1[ $ gives the same theory.
+The choice of $ \frac{1}{2} $ is not important here. Any $ 0<\alpha <1 $ gives the same theory.
 
 \begin{prop}
-Let $ V $ be an $ \mathbb{R} $-vector space equipped with an invariant metric $ d $.
-Denote by $ \underline{V} $ the embedding of $ V $ into condensed $ \mathbb{R} $-vector spaces, using the topology determined by $ d $.
-Then $ V $ is complete (i.e. an F-space) if and only if $ \underline{V} $ is gaseous.
+Let $ V $ be a topological $ \mathbb{R} $-vector space whose topology is induces by a $ p $-norm $ || $ for some $ 0<p\leq 1 $.
+(A $ p $-norm always exists for some $ p $ whenever $ V $ is Hausdorff and locally bounded.)
+Denote by $ \underline{V} $ the embedding of $ V $ into condensed $ \mathbb{R} $-vector spaces.
+Then $ V $ is complete (i.e. a $ p $-Banach space) if and only if $ \underline{V} $ is gaseous.
 \end{prop}
 
 \begin{proof}
-Suppose that $ V $ is complete.
-Let $ f: P _{\mathbb{R}} \to V $ be a map.
-For any profinite set $ S $, $ f (S) : P _{\mathbb{R}} (S) \to V (S) $ is 
+Suppose that $ V $ is complete. We construct explicitly the inverse to $ (\mathrm{id} - \frac{1}{2}\sigma)^{*} $.
+For any profinite set $ S $, the sections $ \Homs _{\mathbb{R}}(P _{\mathbb{R}}, \underline{V})(S) $
+can be identified with sequences of the form $ \{a _{i}\} $ where each $ a _{i}: S\to V $ is a continuous map
+and the sequence $ \{a _{i}\} $ converges uniformly to $ 0 $.
+Let $ b _{n} $ be the partial sum $ \sum _{j\leq n} \frac{1}{2 ^{j}} a _{j} $.
+Then we have
+\begin{align*}
+\sup _{S}|b _{n+k} - b _{n}|
+&= \sup _{S}|\sum _{j=n+1}^{n+k} \frac{1}{2 ^{j}}a _{j}|\\
+&\leq \sum _{j=n+1}^{n+k} \frac{1}{2 ^{jp}} \sup _{S}|a _{j}|
+\end{align*}
+which tends to $ 0 $ since $ \{a _{n}\} $ uniformly converges to $ 0 $.
+Therefore for each point $ x\in S $, the sequence $ \{b _{n}(x)\} $ is Cauchy, so converges to some limit $ b (x) $.
+The estimation also shows that $ \{b _{n}\} $ converges uniformly to $ b (x) $,
+which implies that $ x\mapsto b (x) $ is continuous.
+Thus $ \{a _{i}\} $ is summable against $ \frac{1}{2} $.
+The summation gives an inverse to $ (\mathrm{id}-\frac{1}{2}\sigma)^{*}(S) $.
+As the sums are neccessarily unique, the inverses for various $ S $ are compatible,
+and give the desired inverse map.
+
+Conversely, suppose that $ \underline{V} $ is gaseous.
+Let $ \{a _{i}\} $ be a Cauchy sequence in $ V $.
+Passing to a subsequence, we may assume that $ |a _{i} - a _{i+1}| < 2 ^{-i(1+p)} $ for each $ i $.
+Then $ \{2 ^{i}(a _{i+1}- a _{i})\} $ is a null sequence in $ V $, which corresponds to an element of
+$ \Homs _{\mathbb{R}}(P _{\mathbb{R}}, \underline{V})(*) $.
+As $ \underline{V} $ gaseous, the sequence $ \{2 ^{i}(a _{i+1}-a _{i})\} $ is summable against $ \frac{1}{2} $,
+which gives a limit of $ \{a _{i}\} $.
 \end{proof}
 
-So the gaseous real number captures the completeness of topological vector spaces.
-Note that it says nothing about $ p $-convexity.
-
+So the gaseous real number captures the completeness for Hausdorff, locally bounded topological vector spaces.
+Note that the proof used the scaling behaviour of the $ p $-norm in an essential way,
+and thus does not work without the locally bounded assumption.
 %\appendix
 %\input{anima.tex}
 
