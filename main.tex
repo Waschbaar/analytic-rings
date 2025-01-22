@@ -458,12 +458,11 @@ Then:
 \item The object $ A ^{\huflag\huflag} $ is an animated $ A ^{\huflag} $-algebra;
 \item If $ M $ is an object of $ \D (A) $, then there is a unique $ A ^{\huflag\huflag} $-module structure on $ M $
 whose restriction of scalar to $ A ^{\huflag} $ is $ M $;
-\item If $ M,N $ are objects in $ \D (A) $, then the comparison
+\item The pair $ (A ^{\huflag\huflag}, \D (A)) $ is an analytic animated ring;
+\item If $ M,N $ are objects in $ \D (A) $, then
 \begin{equation*}
-\rhoms _{A ^{\huflag}}(M, N) \to \rhoms _{A ^{\huflag\huflag}}(M, N)
+\rhoms _{A ^{\huflag}}(M, N) \simeq \rhoms _{A ^{\huflag\huflag}}(M, N).
 \end{equation*}
-induced by functoriality is an isomorphism;
-\item The pair $ (A ^{\huflag\huflag}, \D (A)) $ is an analytic animated ring.
 \end{enumerate}
 \end{prop}
 
@@ -488,18 +487,33 @@ $$M \dten _{A ^{\huflag}}A ^{\huflag\huflag}\to L _{A}(M \dten _{A ^{\huflag}} A
 This shows uniqueness.
 
 (3)
-The $ \rhoms $ between restriction of scalars of $ M, N $ gives the inverse.
-
-(4)
-If $ M $ is an object of $ \D (A) $ considered as an $ A ^{\huflag\huflag} $-modules as in (2),
-then the restriction of scalar of $ M $ to $ \D (A ^{\huflag}) $ is just $ M $.
+Let $ \D (A)' $ be the essential image of $ \D (A) $ in $ \D (A ^{\huflag\huflag}) $ under the construction in (2).
+If $ M $ is an object of $ \D (A) $ and $ M' $ is the corresponding object in $ \D (A)' $,
+then the restriction of scalar of $ M' $ to $ \D (A ^{\huflag}) $ is just $ M $.
 While if $ M $ is an object of $ \D (A ^{\huflag\huflag}) $ whose restriction of scalar to $ \D (A ^{\huflag}) $, $ M _{0} $,
 is in $ \D (A) $, then $ M $ is obtained by $ M _{0} $ from the construction of (2) by uniqueness.
-Thus the image of $ \D (A) $ in $ \D (A ^{\huflag\huflag}) $ defines the induced pre-analytic structure on $ A ^{\huflag\huflag} $.
+Thus $ \D (A)' \subset \D (A ^{\huflag\huflag}) $ defines the induced pre-analytic structure on $ A ^{\huflag\huflag} $.
 By constrution $ A ^{\huflag\huflag} $ lies in the image of $ \D (A) $,
 so $ (A ^{\huflag\huflag}, \D (A)) $ is an analytic animated ring.
-((3) allows the abuse of notation that the image of $ \D (A) $ is denoted by $ \D (A) $.)
+
+(4)
+Suppose that $ M,N $ are objects in $ \D (A)' $ whose restrictions of scalars are $ M _{0}, N _{0} $.
+Let $ L _{\huflag}, L _{\huflag\huflag} $ be the functors $ -\otimes _{A ^{\huflag}} A, -\otimes _{A ^{\huflag\huflag}} A $ respectively.
+Then
+\begin{align*}
+\rhoms _{A ^{\huflag}}(M _{0}, N _{0})
+&\simeq \rhoms _{A ^{\huflag\huflag}}(A ^{\huflag\huflag}\dten _{A ^{\huflag}}M _{0}, N)\\
+&\simeq \rhoms _{A ^{\huflag\huflag}}(L _{\huflag\huflag}( A ^{\huflag\huflag} \dten _{A ^{\huflag}} M _{0} ), N)\\
+&\simeq \rhoms _{A ^{\huflag\huflag}}(L _{\huflag\huflag}( A ^{\huflag\huflag} \dten _{A ^{\huflag}} A ^{\huflag} \dten _{A ^{\huflag}} M _{0} ), N)\\
+&\simeq \rhoms _{A ^{\huflag\huflag}}(
+L _{\huflag\huflag}( A ^{\huflag\huflag} \dten _{A ^{\huflag\huflag}} L _{\huflag}( A ^{\huflag\huflag} \dten _{A ^{\huflag}} M _{0} ) )
+, N)\\
+&\simeq \rhoms _{A ^{\huflag\huflag}}(L _{\huflag\huflag}(M), N)\\
+&\simeq \rhoms _{A ^{\huflag\huflag}}(M, N)
+\end{align*}
 \end{proof}
+
+By (4), we may abuse notation and denote the completion of $ (A ^{\huflag}, \D (A)) $ as $ (A ^{\huflag\huflag}, \D (A)) $.
 
 \begin{rmk}
 Completion of a pre-analytic animated ring into an analytic animated ring,
@@ -550,7 +564,8 @@ If $ B $ is an analytic animated ring, then so is $ B _{0} $.
 The gaseous theory is designed to be the universal context for constructing the Tate elliptic curve.
 It is global in the sense that it specializes to theories on both non-archimedean and archimedean rings.
 
-Kedlaya chose to use the terminology \emph{coalescent} instead of \emph{gaseous}.
+Kedlaya chose to use \emph{coalescent} instead of \emph{gaseous}.
+See \cite{kedlaya}, Section 10.7 for the idea behind the terminology.
 (Make sure you use the latest version of his notes, or you will probably see \emph{liquid} which was a bad choice.)
 I stick with gas, even if gas is not a condensed state of matter.
 
@@ -576,7 +591,8 @@ is an isomorphism.
 
 The idea of $ f $-gaseous is that
 if $ \{a _{i}\} $ is a null sequence in $ M $, then
-$ \{f ^{i} a _{i}\} $ is summable.
+$ \{a _{i}\} $ is summable against $ f $, i.e. $ \{ f ^{i} a _{i}\} $ is summable.
+
 
 \begin{prop}
 Using the notations from Definition \ref{gaseous::def}.
@@ -606,16 +622,6 @@ Then the argument in the proof of Proposition \ref{definition::comparison} shows
 the left adjoint to $ \mathsf{Gas}(f)\to \D (A ^{\huflag}) $ preserves the connective parts.
 \end{proof}
 
-\begin{lem}
-Let $ A ^{\huflag} $ be a condensed ring and $ f $ an element of $ A (*) $.
-Fix an integer $ n \geq 1 $.
-A complex $ M\in \D (A ^{\huflag}) $ is $ f $-gaseous if and only if $ M $ is $ f ^{n} $-gaseous.
-\end{lem}
-
-\begin{proof}
-
-\end{proof}
-
 \subsection{Gaseous base ring}
 
 Now we discuss the case where $ f $ is a topologically nilpotent unit.
@@ -636,6 +642,20 @@ A _{0}^{\huflag} := \colim (\mathbb{Z}[\hat{q}] \xrightarrow{\times q} \mathbb{Z
 Let $ A $ be a condensed ring. An element $ f \in  A (*) $ is called \emph{topologically nilpotent}
 if the map $ \mathbb{Z}[T]\to A $ sending $ n $ to $ f ^{n} $ factors through $ \mathbb{Z}[T]\to \mathbb{Z}[\hat{q}]$.
 \end{defi}
+
+The condensed ring $ A _{0}^{\huflag} $ is the initial (condensed ring equipped with a topologically nilpotent unit).
+
+\begin{prop}
+The completion of the pre-analytic animated ring
+$ (A _{0}^{\huflag}, \mathsf{Gas}(q)) $
+is $ (A ^{\huflag}, \mathsf{Gas}(q)) $ where $ A ^{\huflag} $ is the static condensed animated ring
+\begin{equation*}
+\bigcup _{k,c,n>0} \prod _{m\geq -n} (\mathbb{Z}\cap [-c(m+n) ^{k}, c (m+n)^{k}]) q ^{m}.
+\end{equation*}
+(The union is really a filtered colimit with injective transition maps that has a sequential cofinal set.
+Since the objects in the colimit are profinite sets,
+this colimit can be taken in either condensed sets or topological spaces.)
+\end{prop}
 
 \subsection{Gaseous real number}
 
